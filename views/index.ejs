@@ -7,6 +7,13 @@
     <a href="/berita/baru" class="btn">+ Tulis Berita</a>
   </header>
   <main>
+    <form method="GET" action="/" class="search">
+      <input type="text" name="q" placeholder="Cari berita..." value="<%= q %>" />
+      <button type="submit" class="btn">Cari</button>
+    </form>
+    <% if (q && articles.length === 0) { %>
+      <p>Tidak ada berita yang cocok dengan "<%= q %>".</p>
+    <% } %>
     <div class="grid">
       <% articles.forEach(a => { %>
         <a href="/berita/<%= a.slug %>" class="card">

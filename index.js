@@ -15,10 +15,15 @@ function slugify(title) {
 }
 
 app.get("/", (req, res) => {
-  const articles = db
-    .prepare("SELECT * FROM articles ORDER BY created_at DESC")
-    .all();
-  res.render("index", { articles });
+  const q = (req.query.q || "").trim();
+  const articles = q
+    ? db
+        .prepare(
+          "SELECT * FROM articles WHERE title LIKE ? OR body LIKE ? OR category LIKE ? ORDER BY created_at DESC"
+        )
+        .all(`%${q}%`, `%${q}%`, `%${q}%`)
+    : db.prepare("SELECT * FROM articles ORDER BY created_at DESC").all();
+  res.render("index", { articles, q });
 });
 
 app.get("/berita/baru", (req, res) => {
