@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="id">
+<%- include("partials/head", { title: "Berita Lorem" }) %>
+<body>
+  <header>
+    <a href="/" class="brand">Berita<span>Lorem</span></a>
+    <a href="/berita/baru" class="btn">+ Tulis Berita</a>
+  </header>
+  <main>
+    <div class="grid">
+      <% articles.forEach(a => { %>
+        <a href="/berita/<%= a.slug %>" class="card">
+          <p class="category"><%= a.category %></p>
+          <h2><%= a.title %></h2>
+          <p class="date"><%= a.created_at %></p>
+        </a>
+      <% }) %>
+    </div>
+  </main>
+</body>
+</html>

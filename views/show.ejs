@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="id">
+<%- include("partials/head", { title: article.title }) %>
+<body>
+  <header>
+    <a href="/" class="brand">Berita<span>Lorem</span></a>
+    <a href="/berita/baru" class="btn">+ Tulis Berita</a>
+  </header>
+  <main>
+    <a href="/" class="back">&larr; Kembali</a>
+    <article>
+      <p class="category"><%= article.category %></p>
+      <h1><%= article.title %></h1>
+      <p class="date"><%= article.created_at %></p>
+      <% article.body.split("\n\n").forEach(p => { %>
+        <p><%= p %></p>
+      <% }) %>
+    </article>
+  </main>
+</body>
+</html>

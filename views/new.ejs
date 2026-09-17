@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id">
+<%- include("partials/head", { title: "Tulis Berita" }) %>
+<body>
+  <header>
+    <a href="/" class="brand">Berita<span>Lorem</span></a>
+  </header>
+  <main>
+    <a href="/" class="back">&larr; Kembali</a>
+    <h1>Tulis Berita Baru</h1>
+    <% if (typeof error !== "undefined") { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+    <form method="POST" action="/berita" class="form">
+      <label>Judul<input type="text" name="title" required /></label>
+      <label>Kategori<input type="text" name="category" required /></label>
+      <label>Isi<textarea name="body" rows="8" required></textarea></label>
+      <button type="submit" class="btn">Publikasikan</button>
+    </form>
+  </main>
+</body>
+</html>
