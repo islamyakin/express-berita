@@ -9,4 +9,5 @@ FROM node:22-slim
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+EXPOSE 3000 8080 8000
 CMD ["node", "index.js"]

@@ -50,5 +50,7 @@ app.get("/berita/:slug", (req, res) => {
   res.render("show", { article });
 });
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => console.log(`Berita app running on http://localhost:${PORT}`));
+const PORTS = (process.env.PORTS || "3000,8080,8000").split(",").map(Number);
+for (const port of PORTS) {
+  app.listen(port, () => console.log(`Berita app running on http://localhost:${port}`));
+}
