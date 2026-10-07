@@ -1,15 +1,4 @@
-const db = require("./db");
+let count = 0;
 
-function run() {
-  const rows = db
-    .prepare("SELECT category, COUNT(*) AS total FROM articles GROUP BY category")
-    .all();
-  const total = rows.reduce((sum, r) => sum + r.total, 0);
-  console.log(`[worker ${new Date().toISOString()}] total artikel: ${total}`);
-  console.table(rows);
-  return total;
-}
-
-module.exports = run;
-
-if (require.main === module) run();
+console.log("[worker] jalan, hitung tiap 10 detik. Ctrl+C untuk berhenti");
+setInterval(() => console.log(`[worker] ${++count}`), 10_000);
